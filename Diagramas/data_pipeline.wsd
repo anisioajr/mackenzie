@@ -1,0 +1,16 @@
+@startuml Data Pipeline
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+
+Person(user1, "Usuario¹")
+
+System_Boundary(dataviz, "Data Visualization") {
+    Container(dash, "Dashboard", "Clickview, Power BI, Quicksight", "Tool for Dashboard")
+}
+
+System_Boundary(persistence, "Camada de persistencia") {
+    ContainerDb(db, "Database", "MicrosoftSQL, Oracle", "Camada Banco de Dados")
+}
+
+Rel(user1, dash, "Usa", "Graph")
+Rel(dash, db, "Carregar Dados", ":5000")
+@enduml
